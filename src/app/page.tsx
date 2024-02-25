@@ -1,8 +1,9 @@
-import { Button } from "@/components/ui/button";
+import SectionPlans from "./components/section-plans";
+
 export default function Home() {
   return (
-    <main>
-      home
+    <main className="flex flex-col gap-14 my-5">
+      <SectionPlans/>
     </main>
   );
 }
