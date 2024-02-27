@@ -66,7 +66,7 @@ export const subscriptions: SubscriptionPlan[] = [
         totalPrice: 3510,
         price: 3900,
         percentageDiscount: 10,
-        topic: ["Atendentes Ilimitados", "Departamentos Ilimitados", "Tickets Ilimitados", "Anexos de ate 150MB", "Suporte", "Base de Arquivos", "Relatórios"],
+        topic: ["100 Atendentes", "100 Departamento", "Tickets Ilimitados", "Anexos de ate 150MB", "Suporte", "Base de Arquivos", "Relatórios"],
         stripeProduct: process.env.NEXT_PUBLIC_STRIPE_SEMIANNUAL_MID,
     },
     {
@@ -99,7 +99,7 @@ export const subscriptions: SubscriptionPlan[] = [
         totalPrice: 6630,
         price: 7800,
         percentageDiscount: 15,
-        topic: ["Atendentes Ilimitados", "Departamentos Ilimitados", "Tickets Ilimitados", "Anexos de ate 150MB", "Suporte", "Base de Arquivos", "Relatórios"],
+        topic: ["100 Atendentes", "100 Departamento", "Tickets Ilimitados", "Anexos de ate 150MB", "Suporte", "Base de Arquivos", "Relatórios"],
         stripeProduct: process.env.NEXT_PUBLIC_STRIPE_ANNUAL_MID,
     },
     {

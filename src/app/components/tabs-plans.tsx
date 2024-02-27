@@ -1,12 +1,15 @@
+"use client";
 import { subscriptions } from "@/config/subscriptions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { signIn, useSession } from "next-auth/react"
 const CardPlans = () => {
     const monthly = subscriptions.filter((plan) => plan.typePlan === "monthly");
     const semiAnnual = subscriptions.filter((plan) => plan.typePlan === "semi-annual");
     const annual = subscriptions.filter((plan) => plan.typePlan === "annual");
+    const { status } = useSession();
     return (
         <Tabs defaultValue="monthly" className="flex flex-col">
             <TabsList>
@@ -21,7 +24,7 @@ const CardPlans = () => {
                             <CardHeader>
                                 <h1 className="uppercase font-semibold text-3xl">{plan.name}</h1>
                                 <p className="opacity-75">{plan.description}</p>
-                                <span className="text-2xl">R$ {plan.totalPrice.toFixed(2)}/mês</span>
+                                <span className="text-2xl">R${plan.totalPrice.toFixed(2)}/mês</span>
                             </CardHeader>
                             <Separator className="mb-6" />
                             <CardContent>
@@ -32,7 +35,13 @@ const CardPlans = () => {
                                 }
                             </CardContent>
                             <CardFooter>
-                                <Button className="w-full">Assinar</Button>
+                                {
+                                    status === "authenticated" ? (
+                                        <Button className="w-full">Assinar</Button>
+                                    ) : (
+                                        <Button onClick={() => signIn()} className="w-full">Assinar</Button>
+                                    )
+                                }
                             </CardFooter>
                         </Card>
                     ))
@@ -45,7 +54,15 @@ const CardPlans = () => {
                             <CardHeader>
                                 <h1 className="uppercase font-semibold text-3xl">{plan.name}</h1>
                                 <p className="opacity-75">{plan.description}</p>
-                                <span className="text-2xl">R$ {plan.totalPrice.toFixed(2)}/semestre</span>
+                                {
+                                    plan.percentageDiscount > 0 && (
+                                        <>
+                                            <p className="text-red-500 font-semibold">Desconto de {plan.percentageDiscount}%</p>
+                                            <p className=" ">de <span className="line-through">R${plan.price.toFixed(2)}</span> por:</p>
+                                        </>
+                                    )
+                                }
+                                <span className="text-2xl font-semibold">R${plan.totalPrice.toFixed(2)}/semestre</span>
                             </CardHeader>
                             <Separator className="mb-6" />
                             <CardContent>
@@ -56,7 +73,13 @@ const CardPlans = () => {
                                 }
                             </CardContent>
                             <CardFooter>
-                                <Button className="w-full">Assinar</Button>
+                                {
+                                    status === "authenticated" ? (
+                                        <Button className="w-full">Assinar</Button>
+                                    ) : (
+                                        <Button onClick={() => signIn()} className="w-full">Assinar</Button>
+                                    )
+                                }
                             </CardFooter>
                         </Card>
                     ))
@@ -69,7 +92,15 @@ const CardPlans = () => {
                             <CardHeader>
                                 <h1 className="uppercase font-semibold text-3xl">{plan.name}</h1>
                                 <p className="opacity-75">{plan.description}</p>
-                                <span className="text-2xl">R$ {plan.totalPrice.toFixed(2)}/ano</span>
+                                {
+                                    plan.percentageDiscount > 0 && (
+                                        <>
+                                            <p className="text-red-500 font-semibold">Desconto de {plan.percentageDiscount}%</p>
+                                            <p className=" ">de <span className="line-through">R${plan.price.toFixed(2)}</span> por:</p>
+                                        </>
+                                    )
+                                }
+                                <span className="text-2xl font-semibold">R${plan.totalPrice.toFixed(2)}/ano</span>
                             </CardHeader>
                             <Separator className="mb-6" />
                             <CardContent>
@@ -80,7 +111,13 @@ const CardPlans = () => {
                                 }
                             </CardContent>
                             <CardFooter>
-                                <Button className="w-full">Assinar</Button>
+                                {
+                                    status === "authenticated" ? (
+                                        <Button className="w-full">Assinar</Button>
+                                    ) : (
+                                        <Button onClick={() => signIn()} className="w-full">Assinar</Button>
+                                    )
+                                }
                             </CardFooter>
                         </Card>
                     ))
