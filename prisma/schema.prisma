@@ -53,6 +53,10 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+
+  stripeCustomerId String? @unique
+  isActivated      Boolean @default(false)
+  subscriptionId   String?
 }
 
 model VerificationToken {
@@ -62,4 +66,3 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
-
