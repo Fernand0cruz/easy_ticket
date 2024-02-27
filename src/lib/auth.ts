@@ -10,6 +10,8 @@ declare module "next-auth" {
     interface Session {
         user?: {
             id: string;
+            name: string;
+            image: string;
             stripeCustomerId: string;
             isActive: boolean;
             subscriptionId: string | null;
