@@ -89,7 +89,7 @@ export const subscriptions: SubscriptionPlan[] = [
         price: 0,
         percentageDiscount: 0,
         topic: ["5 Atendente", "5 Departamento", "Tickets Ilimitados", "Anexos de ate 150MB", "Base de Arquivos"],
-        stripeProduct: process.env.NEXT_PUBLIC_STRIPE_SEMIANNUAL_TEST,
+        stripeProduct: process.env.NEXT_PUBLIC_STRIPE_ANNUAL_TEST,
     },
     {
         id: "annual-mid",

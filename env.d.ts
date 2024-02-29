@@ -19,5 +19,8 @@ declare namespace NodeJS {
         NEXT_PUBLIC_STRIPE_ANNUAL_TEST: string;
         NEXT_PUBLIC_STRIPE_ANNUAL_MID: string;
         NEXT_PUBLIC_STRIPE_ANNUAL_FULL: string;
+
+        NEXAUTH_SECRET: string;
+        NEXTAUTH_URL: string;
     }
 }

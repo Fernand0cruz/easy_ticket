@@ -94,7 +94,9 @@ const CardPlans = () => {
                             <CardFooter>
                                 {
                                     status === "authenticated" ? (
-                                        <Button className="w-full">Assinar</Button>
+                                        <Button className="w-full"
+                                            onClick={() => handleCreateCheckoutSession(plan.stripeProduct) }
+                                        >Assinar</Button>
                                     ) : (
                                         <Button onClick={() => signIn()} className="w-full">Assinar</Button>
                                     )
@@ -132,7 +134,9 @@ const CardPlans = () => {
                             <CardFooter>
                                 {
                                     status === "authenticated" ? (
-                                        <Button className="w-full">Assinar</Button>
+                                        <Button className="w-full"
+                                            onClick={() => handleCreateCheckoutSession(plan.stripeProduct) }
+                                        >Assinar</Button>
                                     ) : (
                                         <Button onClick={() => signIn()} className="w-full">Assinar</Button>
                                     )
