@@ -5,11 +5,28 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { signIn, useSession } from "next-auth/react"
+import getStripe from "@/utils/getStripe";
 const CardPlans = () => {
     const monthly = subscriptions.filter((plan) => plan.typePlan === "monthly");
     const semiAnnual = subscriptions.filter((plan) => plan.typePlan === "semi-annual");
     const annual = subscriptions.filter((plan) => plan.typePlan === "annual");
     const { status } = useSession();
+    const handleCreateCheckoutSession = async (stripeProduct: string) => {
+		const res = await fetch("api/stripe/checkout-session", {
+			method: "POST",
+			body: JSON.stringify(stripeProduct),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const checkoutSession = await res.json().then((value) => {
+			return value.session;
+		});
+		const stripe = await getStripe();
+		const { error } = await stripe!.redirectToCheckout({
+			sessionId: checkoutSession.id,
+		});
+	};
     return (
         <Tabs defaultValue="monthly" className="flex flex-col">
             <TabsList>
@@ -37,7 +54,9 @@ const CardPlans = () => {
                             <CardFooter>
                                 {
                                     status === "authenticated" ? (
-                                        <Button className="w-full">Assinar</Button>
+                                        <Button className="w-full"
+                                            onClick={() => handleCreateCheckoutSession(plan.stripeProduct) }
+                                        >Assinar</Button>
                                     ) : (
                                         <Button onClick={() => signIn()} className="w-full">Assinar</Button>
                                     )
