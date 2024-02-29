@@ -34,8 +34,8 @@ const session = await getServerSession(authOptions);
 				quantity: 1,
 			},
 		],
-		success_url: "http://localhost:3000",
-		cancel_url: "http://localhost:3000",
+		success_url: process.env.URL_BASE,
+		cancel_url: process.env.URL_BASE,
 		subscription_data: {
 			metadata: {
 				payingUserId: session.user.id,

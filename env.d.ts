@@ -22,5 +22,7 @@ declare namespace NodeJS {
 
         NEXAUTH_SECRET: string;
         NEXTAUTH_URL: string;
+
+        URL_BASE: string;
     }
 }
