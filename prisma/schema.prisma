@@ -57,6 +57,10 @@ model User {
   stripeCustomerId String? @unique
   isActivated      Boolean @default(false)
   subscriptionId   String?
+
+  isAdministrator Boolean @default(false)
+  isSupporter     Boolean @default(false)
+  isUser          Boolean @default(false)
 }
 
 model VerificationToken {
